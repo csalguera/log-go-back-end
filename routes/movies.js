@@ -12,5 +12,6 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, moviesCtrl.create)
 router.get('/', checkAuth, moviesCtrl.index)
 router.put('/:id', checkAuth, moviesCtrl.update)
+router.delete('/:id', checkAuth, moviesCtrl.delete)
 
 module.exports = router
