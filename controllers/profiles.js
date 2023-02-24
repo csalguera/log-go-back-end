@@ -1,7 +1,7 @@
 const { Profile } = require('../models')
 const cloudinary = require('cloudinary').v2
 
-async function index(req, res) {
+const index = async (req, res) => {
   try {
     const profiles = await Profile.findAll()
     res.json(profiles)
@@ -11,7 +11,7 @@ async function index(req, res) {
   }
 }
 
-async function addPhoto(req, res) {
+const addPhoto = async (req, res) => {
   try {
     const imageFile = req.files.photo.path
     const profile = await Profile.findByPk(req.params.id)
@@ -28,4 +28,19 @@ async function addPhoto(req, res) {
   }
 }
 
-module.exports = { index, addPhoto }
+const show = async (req, res) => {
+  try {
+    const profile = await Profile.findByPk(req.params.id, {
+      include: 'movies'
+    })
+    res.status(200).json(profile)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+module.exports = {
+  index,
+  addPhoto,
+  show,
+}
