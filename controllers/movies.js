@@ -19,7 +19,19 @@ const index = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  try {
+    const movie = await Movie.findByPk(req.params.id)
+    movie.set(req.body)
+    await movie.save()
+    res.status(200).json(movie)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   create,
   index,
+  update,
 }
