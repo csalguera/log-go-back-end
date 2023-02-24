@@ -1,41 +1,41 @@
-'use strict'
-const { Model } = require('sequelize')
-
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Movie extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Profile.belongsTo(models.User, { foreignKey: 'userId' })
-      Profile.hasMany(models.Movie, {
-        as: 'movies',
+      Movie.belongsTo(models.Profile, {
+        as: 'profile',
         foreignKey: 'profileId'
       })
     }
   }
-
-  Profile.init({
+  Movie.init({
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    photo: DataTypes.STRING,
-    userId: {
+    releaseDate: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE',
+    },
+    profileId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
-        model: 'Users',
-        key: 'id',
+        model: 'Profiles',
+        key: 'id'
       },
     },
-  },
-  {
+  }, {
     sequelize,
-    modelName: 'Profile',
-  })
-  return Profile
-}
+    modelName: 'Movie',
+  });
+  return Movie;
+};
