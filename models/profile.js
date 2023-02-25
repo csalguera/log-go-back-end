@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'movies',
         foreignKey: 'profileId'
       })
+      Profile.hasMany(models.Book, {
+        as: 'books',
+        foreignKey: 'profileId'
+      })
     }
   }
 

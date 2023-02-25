@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Movies', {
+    await queryInterface.createTable('Books', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,11 +11,15 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      releaseDate: {
+      author: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      published: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       profileId: {
         type: Sequelize.INTEGER,
@@ -37,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Movies');
+    await queryInterface.dropTable('Books');
   }
 };
