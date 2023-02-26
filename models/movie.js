@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Movie.belongsTo(models.Profile, {
-        as: 'profile',
-        foreignKey: 'profileId'
+        as: 'movieProfile',
+        foreignKey: 'profileMovieId'
       })
     }
   }
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    profileId: {
+    profileMovieId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',

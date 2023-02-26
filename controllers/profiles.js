@@ -31,8 +31,7 @@ const addPhoto = async (req, res) => {
 const show = async (req, res) => {
   try {
     const profile = await Profile.findByPk(req.params.id, {
-      include: 'movies',
-      include: 'books',
+      include: { all: true }
     })
     res.status(200).json(profile)
   } catch (error) {

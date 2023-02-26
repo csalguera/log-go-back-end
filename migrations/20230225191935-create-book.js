@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      profileId: {
+      profileBookId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',

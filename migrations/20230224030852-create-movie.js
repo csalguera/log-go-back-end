@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      profileId: {
+      profileMovieId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',

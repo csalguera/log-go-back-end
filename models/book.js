@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Book.belongsTo(models.Profile, {
-        as: 'profile',
-        foreignKey: 'profileId'
+        as: 'bookProfile',
+        foreignKey: 'profileBookId'
       })
     }
   }
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    profileId: {
+    profileBookId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',

@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User, { foreignKey: 'userId' })
       Profile.hasMany(models.Movie, {
         as: 'movies',
-        foreignKey: 'profileId'
+        foreignKey: 'profileMovieId'
       })
       Profile.hasMany(models.Book, {
         as: 'books',
-        foreignKey: 'profileId'
+        foreignKey: 'profileBookId'
       })
     }
   }
