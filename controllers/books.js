@@ -2,7 +2,7 @@ const { Book } = require('../models')
 
 const create = async (req, res) => {
   try {
-    req.body.profileId = req.user.profile.id
+    req.body.profileBookId = req.user.profile.id
     const book = await Book.create(req.body)
     res.status(200).json(book)
   } catch (error) {

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Movie.belongsTo(models.Profile, {
-        as: 'movieProfile',
+        as: 'profile',
         foreignKey: 'profileMovieId'
       })
     }
