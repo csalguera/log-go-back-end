@@ -34,7 +34,7 @@ module.exports = {
         },
       },
       category: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'Book',
       },
