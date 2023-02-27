@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       },
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Movie',
+    },
   }, {
     sequelize,
     modelName: 'Movie',

@@ -37,7 +37,12 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Profiles',
         key: 'id'
       }
-    }
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Book',
+    },
   }, {
     sequelize,
     modelName: 'Book',
