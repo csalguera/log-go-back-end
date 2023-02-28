@@ -4,7 +4,7 @@ const create = async (req, res) => {
   try {
     req.body.profileBookId = req.user.profile.id
     const book = await Book.create(req.body)
-    res.status(200).json(book)
+    res.status(201).json(book)
   } catch (error) {
     res.status(500).json(error)
   }
