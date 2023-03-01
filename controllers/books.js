@@ -24,6 +24,11 @@ const index = async (req, res) => {
 const update = async (req, res) => {
   try {
     const book = await Book.findByPk(req.params.id)
+
+    if (book.profileBookId !== req.user.profile.id) {
+      return res.status(401).json({ error: 'You are not authorized to update this resource.' })
+    }
+
     book.set(req.body)
     await book.save()
     res.status(200).json(book)
@@ -35,6 +40,11 @@ const update = async (req, res) => {
 const deleteBook = async (req, res) => {
   try {
     const book = await Book.findByPk(req.params.id)
+
+    if (book.profileBookId !== req.user.profile.id) {
+      return res.status(401).json({ error: 'You are not authorized to delete this resource.' })
+    }
+
     book.destroy()
     res.status(200).json(book)
   } catch (error) {

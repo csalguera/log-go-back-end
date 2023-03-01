@@ -24,6 +24,11 @@ const index = async (req, res) => {
 const update = async (req, res) => {
   try {
     const movie = await Movie.findByPk(req.params.id)
+    
+    if (movie.profileMovieId !== req.user.profile.id) {
+      return res.status(401).json({ error: 'You are not authorized to update this resource.' })
+    }
+
     movie.set(req.body)
     await movie.save()
     res.status(200).json(movie)
@@ -35,6 +40,11 @@ const update = async (req, res) => {
 const deleteMovie = async (req, res) => {
   try {
     const movie = await Movie.findByPk(req.params.id)
+
+    if (movie.profileMovieId !== req.user.profile.id) {
+      return res.status(401).json({ error: 'You are not authorized to delete this resource.' })
+    }
+
     movie.destroy()
     res.status(200).json(movie)
   } catch (error) {
