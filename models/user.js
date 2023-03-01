@@ -47,6 +47,11 @@ module.exports = (sequelize, DataTypes) => {
         return () => this.getDataValue('password')
       },
     },
+    favColor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '#000000',
+    },
   },
   {
     sequelize,
