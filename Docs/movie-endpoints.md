@@ -1,5 +1,3 @@
-## Endpoints
-
 ### Create a Movie
 
 **Method**: ```POST```
