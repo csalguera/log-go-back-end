@@ -5,6 +5,7 @@ This API allows CRUD operations on a database of Movies and Books
 ## Endpoints:
 
 - View the endpoints for [movies](https://github.com/csalguera/log-go-back-end/blob/main/Docs/movie-endpoints.md)
+- View the endpoints for [books](https://github.com/csalguera/log-go-back-end/blob/main/Docs/book-endpoints.md)
 
 # Front-End:
 
