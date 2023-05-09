@@ -1,4 +1,5 @@
 const { Movie } = require('../models')
+const cloudinary = require('cloudinary').v2
 
 const create = async (req, res) => {
   try {
@@ -52,9 +53,27 @@ const deleteMovie = async (req, res) => {
   }
 }
 
+const addPhoto = async (req, res) => {
+  try {
+    const imageFile = req.files.photo.path
+    const movie = await Movie.findByPk(req.params.id)
+    const image = await cloudinary.uploader.upload(
+      imageFile, 
+      { tags: `${req.user.email}` }
+    )
+    movie.photo = image.url
+    await movie.save()
+    res.status(201).json(movie.photo)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ err: error })
+  }
+}
+
 module.exports = {
   create,
   index,
   update,
   delete: deleteMovie,
+  addPhoto,
 }

@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'Movie',
     },
+    photo: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Movie',

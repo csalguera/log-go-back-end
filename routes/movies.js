@@ -13,5 +13,6 @@ router.post('/', checkAuth, moviesCtrl.create)
 router.get('/', checkAuth, moviesCtrl.index)
 router.put('/:id', checkAuth, moviesCtrl.update)
 router.delete('/:id', checkAuth, moviesCtrl.delete)
+router.put('/:id/add-photo', checkAuth, moviesCtrl.addPhoto)
 
 module.exports = router
