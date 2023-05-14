@@ -13,5 +13,6 @@ router.post('/', checkAuth, booksCtrl.create)
 router.get('/', checkAuth, booksCtrl.index)
 router.put('/:id', checkAuth, booksCtrl.update)
 router.delete('/:id', checkAuth, booksCtrl.delete)
+router.put('/:id/add-photo', checkAuth, booksCtrl.addPhoto)
 
 module.exports = router
