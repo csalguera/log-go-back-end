@@ -55,14 +55,14 @@ const deleteBook = async (req, res) => {
 const addPhoto = async (req, res) => {
   try {
     const imageFile = req.files.photo.path
-    const movie = await Movie.findByPk(req.params.id)
+    const book = await Book.findByPk(req.params.id)
     const image = await cloudinary.uploader.upload(
       imageFile, 
       { tags: `${req.user.email}` }
     )
-    movie.photo = image.url
-    await movie.save()
-    res.status(201).json(movie.photo)
+    book.photo = image.url
+    await book.save()
+    res.status(201).json(book.photo)
   } catch (error) {
     console.log(error)
     res.status(500).json({ err: error })
