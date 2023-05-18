@@ -11,7 +11,7 @@ router.post('/login', authCtrl.login)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/change-password', checkAuth, authCtrl.changePassword)
-router.post('/change-username', checkAuth, authCtrl.changeUsername)
+router.put('/change-username', checkAuth, authCtrl.changeUsername)
 router.post('/change-favorite-color', checkAuth, authCtrl.changeFavoriteColor)
 
 module.exports = router
