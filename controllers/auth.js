@@ -74,9 +74,24 @@ async function changeUsername(req, res) {
   try {
     const user = await User.findByPk(req.user.id)
     if (!user) return res.status(401).json({ err: 'User not found' })
-    const newName = user.name = req.body.name
+    const newName = req.body.name
+    user.name = newName
     await user.save()
     return res.status(200).json({ msg: `Username updated successfully to ${newName}` })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ err: error })
+  }
+}
+
+async function changeFavoriteColor(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id)
+    if (!user) return res.status(401).json({ err: 'User not found' })
+    const newColor = req.body.favColor
+    user.favColor = newColor
+    user.save()
+    return res.status(200).json({ msg: `Favorite color updated successfully to ${newColor}` })
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: error })
@@ -94,4 +109,5 @@ module.exports = {
   login,
   changePassword,
   changeUsername,
+  changeFavoriteColor,
 }
