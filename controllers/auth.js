@@ -70,10 +70,28 @@ async function changePassword(req, res) {
   }
 }
 
+async function changeUsername(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id)
+    if (!user) return res.status(401).json({ err: 'User not found' })
+    user.name = req.body.name
+    await user.save()
+    return res.status(200).json({ msg: 'Username updated successfully' })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ err: error })
+  }
+}
+
 // /* --== Helper Functions ==-- */
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-module.exports = { signup, login, changePassword }
+module.exports = {
+  signup,
+  login,
+  changePassword,
+  changeUsername,
+}
