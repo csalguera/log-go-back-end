@@ -25,7 +25,7 @@ module.exports = {
       favColor: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'blue',
+        defaultValue: '#1a76d2',
       },
       createdAt: {
         type: Sequelize.DATE,
