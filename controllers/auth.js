@@ -72,7 +72,9 @@ async function changePassword(req, res) {
 
 async function changeUsername(req, res) {
   try {
-    const user = await User.findByPk(req.user.id)
+    const user = await User.findByPk(req.user.id, {
+      include: { all: true }
+    })
     if (!user) return res.status(401).json({ err: 'User not found' })
     user.name = req.body.name
     await user.save()
