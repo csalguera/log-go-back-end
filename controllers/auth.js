@@ -74,10 +74,10 @@ async function changeUsername(req, res) {
   try {
     const user = await User.findByPk(req.user.id)
     if (!user) return res.status(401).json({ err: 'User not found' })
-    const newName = req.body.name
-    user.name = newName
+    user.name = req.body.name
     await user.save()
-    return res.status(200).json({ msg: `Username updated successfully to ${newName}` })
+    const token = createJWT(user)
+    return res.json({ token })
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: error })
