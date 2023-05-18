@@ -74,9 +74,9 @@ async function changeUsername(req, res) {
   try {
     const user = await User.findByPk(req.user.id)
     if (!user) return res.status(401).json({ err: 'User not found' })
-    user.name = req.body.name
+    const newName = user.name = req.body.name
     await user.save()
-    return res.status(200).json({ msg: 'Username updated successfully' })
+    return res.status(200).json({ msg: `Username updated successfully to ${newName}` })
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: error })
