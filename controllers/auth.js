@@ -70,10 +70,48 @@ async function changePassword(req, res) {
   }
 }
 
+async function changeUsername(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: { all: true }
+    })
+    if (!user) return res.status(401).json({ err: 'User not found' })
+    user.name = req.body.name
+    await user.save()
+    const token = createJWT(user)
+    return res.json({ token })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ err: error })
+  }
+}
+
+async function changeFavoriteColor(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: { all: true }
+    })
+    if (!user) return res.status(401).json({ err: 'User not found' })
+    user.favColor = req.body.favColor
+    user.save()
+    const token = createJWT(user)
+    return res.json({ token })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ err: error })
+  }
+}
+
 // /* --== Helper Functions ==-- */
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-module.exports = { signup, login, changePassword }
+module.exports = {
+  signup,
+  login,
+  changePassword,
+  changeUsername,
+  changeFavoriteColor,
+}
