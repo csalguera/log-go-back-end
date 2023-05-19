@@ -88,12 +88,14 @@ async function changeUsername(req, res) {
 
 async function changeFavoriteColor(req, res) {
   try {
-    const user = await User.findByPk(req.user.id)
+    const user = await User.findByPk(req.user.id, {
+      include: { all: true }
+    })
     if (!user) return res.status(401).json({ err: 'User not found' })
-    const newColor = req.body.favColor
-    user.favColor = newColor
+    user.favColor = req.body.favColor
     user.save()
-    return res.status(200).json({ msg: `Favorite color updated successfully to ${newColor}` })
+    const token = createJWT(user)
+    return res.json({ token })
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: error })
