@@ -52,6 +52,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: '#1a76d2',
     },
+    darkTheme: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     sequelize,
