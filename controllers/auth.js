@@ -92,6 +92,22 @@ async function changeFavoriteColor(req, res) {
       include: { all: true }
     })
     if (!user) return res.status(401).json({ err: 'User not found' })
+    user.darkPref = req.body.darkPref
+    user.save()
+    const token = createJWT(user)
+    return res.json({ token })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ err: error })
+  }
+}
+
+async function changeFavoriteColor(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: { all: true }
+    })
+    if (!user) return res.status(401).json({ err: 'User not found' })
     user.favColor = req.body.favColor
     user.save()
     const token = createJWT(user)

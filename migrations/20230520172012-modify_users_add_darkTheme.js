@@ -11,7 +11,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('Users', 'darkTheme', {
+    await queryInterface.addColumn('Users', 'darkPref', {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
