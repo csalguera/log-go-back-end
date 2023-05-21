@@ -102,13 +102,13 @@ async function changeFavoriteColor(req, res) {
   }
 }
 
-async function changeFavoriteColor(req, res) {
+async function changeDarkPref(req, res) {
   try {
     const user = await User.findByPk(req.user.id, {
       include: { all: true }
     })
     if (!user) return res.status(401).json({ err: 'User not found' })
-    user.favColor = req.body.favColor
+    user.darkPref = req.body.darkPref
     user.save()
     const token = createJWT(user)
     return res.json({ token })
@@ -130,4 +130,5 @@ module.exports = {
   changePassword,
   changeUsername,
   changeFavoriteColor,
+  changeDarkPref,
 }
